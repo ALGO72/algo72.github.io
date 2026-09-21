@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Djabir Abdoul Raouf — développeur full-stack, Libreville</title>
+<meta name="description" content="Développeur full-stack JavaScript à Libreville. J'ai conçu et mis en production Gab-POS Tech, un logiciel de caisse et de gestion pour les commerces et restaurants du Gabon.">
+<link rel="icon" href="img/favicon.png">
+<meta property="og:title" content="Djabir Abdoul Raouf — développeur full-stack">
+<meta property="og:description" content="J'ai conçu et mis en production Gab-POS Tech, un logiciel de caisse et de gestion pour les commerces du Gabon.">
+<meta property="og:image" content="img/avatar.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F6F7F4; --surface: #FFFFFF; --ink: #17241D; --muted: #5B6770;
+    --line: #E1E5E0; --accent: #0E6B4C; --accent-soft: #E3F1EA; --amber: #E8A63B;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0F1613; --surface: #17211C; --ink: #EEF2EF; --muted: #9AA7A0;
+      --line: #263129; --accent: #3FB58A; --accent-soft: #163427;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 16px/1.6 Inter, system-ui, sans-serif; -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 20px; }
+  h1, h2, h3 { font-family: "Space Grotesk", Inter, sans-serif; letter-spacing: -0.01em; margin: 0; }
+  h2 { font-size: 1.05rem; text-transform: uppercase; letter-spacing: .08em; color: var(--accent); margin-bottom: 14px; }
+  section { padding: 36px 0; border-top: 1px solid var(--line); }
+  p { margin: 0 0 12px; }
+
+  /* En-tête */
+  header { padding: 56px 0 40px; }
+  .hero { display: flex; gap: 24px; align-items: center; }
+  .hero img { width: 96px; height: 96px; border-radius: 50%; flex: none; box-shadow: 0 2px 12px rgba(0,0,0,.12); }
+  .hero h1 { font-size: 1.9rem; line-height: 1.15; }
+  .hero .role { color: var(--accent); font-weight: 600; margin: 6px 0 2px; }
+  .hero .where { color: var(--muted); font-size: .95rem; }
+  .links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+  .links a {
+    display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px;
+    border: 1px solid var(--line); border-radius: 999px; background: var(--surface);
+    color: var(--ink); font-size: .92rem; font-weight: 500;
+  }
+  .links a:hover { border-color: var(--accent); text-decoration: none; }
+  .links svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* Carte projet */
+  .card {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 22px;
+  }
+  .card-head { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
+  .card-head img { width: 44px; height: 44px; border-radius: 10px; }
+  .card-head h3 { font-size: 1.2rem; }
+  .card-head small { display: block; color: var(--muted); font-size: .88rem; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 14px 0 0; padding: 0; list-style: none; }
+  .tags li { font-size: .8rem; padding: 4px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-weight: 500; }
+  .facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 16px 0 0; padding: 0; list-style: none; }
+  .facts li { border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font-size: .88rem; color: var(--muted); }
+  .facts strong { display: block; color: var(--ink); font-size: 1rem; font-family: "Space Grotesk", sans-serif; }
+  @media (max-width: 520px) { .facts { grid-template-columns: 1fr 1fr; } .hero { flex-direction: column; align-items: flex-start; } }
+
+  /* Principes */
+  .rules { display: grid; gap: 14px; margin: 0; padding: 0; list-style: none; }
+  .rules li { padding-left: 18px; border-left: 3px solid var(--amber); }
+  .rules b { display: block; font-weight: 600; }
+  .rules span { color: var(--muted); font-size: .95rem; }
+
+  /* Compétences / parcours */
+  dl { display: grid; grid-template-columns: 130px 1fr; gap: 8px 16px; margin: 0; }
+  dt { font-weight: 600; font-size: .92rem; }
+  dd { margin: 0; color: var(--muted); font-size: .95rem; }
+  @media (max-width: 520px) { dl { grid-template-columns: 1fr; gap: 2px 0; } dd { margin-bottom: 10px; } }
+  .timeline { margin: 0; padding: 0; list-style: none; }
+  .timeline li { display: grid; grid-template-columns: 110px 1fr; gap: 12px; padding: 8px 0; border-bottom: 1px dashed var(--line); font-size: .95rem; }
+  .timeline li:last-child { border-bottom: 0; }
+  .timeline time { color: var(--muted); font-variant-numeric: tabular-nums; }
+  @media (max-width: 520px) { .timeline li { grid-template-columns: 1fr; gap: 0; } }
+
+  footer { padding: 32px 0 48px; color: var(--muted); font-size: .85rem; border-top: 1px solid var(--line); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="hero">
+      <img src="img/avatar.png" alt="Monogramme DA — Djabir Abdoul Raouf" width="96" height="96">
+      <div>
+        <h1>Djabir Abdoul Raouf</h1>
+        <div class="role">Développeur full-stack · Fondateur de Gab-POS Tech</div>
+        <div class="where">Libreville, Gabon</div>
+      </div>
+    </div>
+    <p style="margin-top:22px;font-size:1.08rem">
+      Je construis des logiciels complets et utilisables, pour des gens qui n'ont pas le temps
+      d'apprendre un logiciel. Le dernier en date : une caisse pour les commerces et restaurants
+      du Gabon, de la base de données jusqu'au déploiement, seul.
+    </p>
+    <div class="links">
+      <a href="mailto:djabirabdoulraouf72@gmail.com"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>djabirabdoulraouf72@gmail.com</a>
+      <a href="https://www.linkedin.com/in/djabir-abdoul-raouf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a>
+      <a href="https://gabpostech.com" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>gabpostech.com</a>
+      <a href="https://www.youtube.com/@gabpostech" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M22.5 6.4a3 3 0 0 0-2.1-2.1C18.5 4 12 4 12 4s-6.5 0-8.4.3A3 3 0 0 0 1.5 6.4 31 31 0 0 0 1.2 12a31 31 0 0 0 .3 5.6 3 3 0 0 0 2.1 2.1C5.5 20 12 20 12 20s6.5 0 8.4-.3a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .3-5.6 31 31 0 0 0-.3-5.6z"/><path d="m10 15 5-3-5-3z"/></svg>YouTube</a>
+    </div>
+  </header>
+
+  <section id="projet">
+    <h2>Ce que j'ai construit</h2>
+    <div class="card">
+      <div class="card-head">
+        <img src="img/gabpos-icon.svg" alt="Logo Gab-POS Tech">
+        <div>
+          <h3>Gab-POS Tech</h3>
+          <small>Logiciel de caisse, de stock et de gestion d'équipe — 2025 à aujourd'hui</small>
+        </div>
+      </div>
+      <p>
+        Une caisse tactile pour les boutiques, restaurants et maquis du Gabon, qui tourne sur le
+        téléphone ou l'ordinateur que le commerçant a déjà. Elle continue d'encaisser quand la
+        connexion coupe, et les ventes remontent seules au retour du réseau.
+      </p>
+      <p>
+        Stock et alertes, fournisseurs, personnel, fidélité, rapports PDF et Excel, écran de cuisine en
+        temps réel, paiement Mobile Money, offres d'abonnement avec essai gratuit. Plus le site, les
+        guides, les vidéos de formation et l'installation sur place.
+      </p>
+      <ul class="facts">
+        <li><strong>1 personne</strong>conception, code, déploiement</li>
+        <li><strong>Hors ligne</strong>PWA, ventes synchronisées</li>
+        <li><strong>En production</strong>gabpostech.com</li>
+      </ul>
+      <ul class="tags">
+        <li>React</li><li>Tailwind CSS</li><li>Node.js</li><li>Express</li><li>Prisma</li><li>MySQL</li>
+        <li>WebSocket</li><li>PWA</li><li>Vercel</li><li>Render</li><li>Aiven</li>
+      </ul>
+      <p style="margin:16px 0 0"><a href="https://gabpostech.com" target="_blank" rel="noopener">Voir le site →</a>
+        &nbsp;·&nbsp; <a href="https://www.youtube.com/@gabpostech" target="_blank" rel="noopener">Voir la démo vidéo →</a></p>
+    </div>
+  </section>
+
+  <section id="principes">
+    <h2>Comment je travaille</h2>
+    <ul class="rules">
+      <li><b>Le mot suit la donnée.</b><span>Tant que les charges ne sont pas saisies, l'écran écrit « marge », pas « bénéfice ». Un logiciel qui flatte le patron finit par lui mentir.</span></li>
+      <li><b>Le réseau coupe, le logiciel non.</b><span>Tout est pensé pour une connexion irrégulière : on encaisse d'abord, on synchronise après.</span></li>
+      <li><b>Livrer, pas démontrer.</b><span>Un produit n'existe que quand quelqu'un peut s'en servir sans moi : hébergement, sauvegardes, guides, formation.</span></li>
+    </ul>
+  </section>
+
+  <section id="competences">
+    <h2>Compétences</h2>
+    <dl>
+      <dt>Front-end</dt><dd>React, JavaScript moderne, Tailwind CSS, Vite, PWA, HTML / CSS</dd>
+      <dt>Back-end</dt><dd>Node.js, Express, API REST, authentification JWT, WebSocket, PHP</dd>
+      <dt>Données</dt><dd>MySQL, Prisma, modélisation multi-établissements, migrations, sauvegardes</dd>
+      <dt>Déploiement</dt><dd>Git / GitHub, Vercel, Render, Aiven, DNS et domaines, tests automatisés</dd>
+      <dt>Design</dt><dd>Figma, Photoshop, Illustrator — maquettes, identité visuelle, supports vidéo</dd>
+    </dl>
+  </section>
+
+  <section id="parcours">
+    <h2>Parcours</h2>
+    <ul class="timeline">
+      <li><time>2025 – auj.</time><span><b>Gab-POS Tech</b>, Libreville — fondateur et développeur</span></li>
+      <li><time>mai 2025</time><span>Challenge de l'étudiant-entrepreneur (Youth Connekt Cameroon, PNUD, ONU Femmes) — présélection zonale</span></li>
+      <li><time>été 2024</time><span>Stage développeur, <b>CDTIC – Université de Ngaoundéré</b> — système de gestion des présences</span></li>
+      <li><time>2023 – 2025</time><span>Génie logiciel, <b>Institut Supérieur ISSTMADD</b>, Ngaoundéré — président du club informatique</span></li>
+      <li><time>2022</time><span>Stage développeur, <b>Butterfly Company</b> — suivi des tâches, interface e-commerce</span></li>
+    </ul>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>Un projet, une question, une collaboration : écrivez-moi à
+      <a href="mailto:djabirabdoulraouf72@gmail.com">djabirabdoulraouf72@gmail.com</a>
+      ou sur <a href="https://www.linkedin.com/in/djabir-abdoul-raouf" target="_blank" rel="noopener">LinkedIn</a>.
+      Je réponds en français, depuis Libreville.</p>
+  </section>
+
+  <footer>© 2026 Djabir Abdoul Raouf · Page sans cookies ni traceurs.</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#17A874"/>
+      <stop offset="55%" stop-color="#0E6B4C"/>
+      <stop offset="100%" stop-color="#E8A63B"/>
+    </linearGradient>
+    <linearGradient id="ribbonGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#E9F3EE"/>
+    </linearGradient>
+    <linearGradient id="plateGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1D3B30"/>
+      <stop offset="100%" stop-color="#12241C"/>
+    </linearGradient>
+    <linearGradient id="sheenGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.16"/>
+      <stop offset="45%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- fond icone (squircle) -->
+  <rect x="0" y="0" width="512" height="512" rx="114" ry="114" fill="url(#bgGrad)"/>
+  <rect x="0" y="0" width="512" height="512" rx="114" ry="114" fill="url(#sheenGrad)"/>
+
+  <!-- ruban "G" : bras vertical + bras horizontal, coins arrondis, union simple -->
+  <rect x="132" y="108" width="112" height="296" rx="56" fill="url(#ribbonGrad)"/>
+  <rect x="132" y="108" width="232" height="112" rx="56" fill="url(#ribbonGrad)"/>
+
+  <!-- plaque terminal (chevauche le bas du ruban) -->
+  <rect x="192" y="216" width="190" height="196" rx="36" fill="url(#plateGrad)"/>
+
+  <!-- ecran : ligne de ticket + bouton -->
+  <rect x="220" y="246" width="94" height="15" rx="7.5" fill="#F4F1EA"/>
+  <circle cx="352" cy="253.5" r="10" fill="#E8A63B"/>
+
+  <!-- pave numerique : grille 3x2 -->
+  <circle cx="222" cy="336" r="8" fill="#F4F1EA"/>
+  <circle cx="255" cy="336" r="8" fill="#F4F1EA"/>
+  <circle cx="288" cy="336" r="8" fill="#F4F1EA"/>
+  <circle cx="222" cy="366" r="8" fill="#F4F1EA"/>
+  <circle cx="255" cy="366" r="8" fill="#F4F1EA"/>
+  <circle cx="288" cy="366" r="8" fill="#F4F1EA"/>
+</svg>
