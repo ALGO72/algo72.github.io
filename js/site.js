@@ -25,6 +25,7 @@
 
   // Sur grand écran, la vidéo du téléphone joue quand elle est à l'écran.
   const videos = document.querySelectorAll('.tel video');
+  if (large.matches) videos.forEach((v) => { v.poster = v.dataset.poster; });
   const lecteur = new IntersectionObserver((entrees) => {
     for (const e of entrees) {
       const v = e.target;

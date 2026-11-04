@@ -60,7 +60,7 @@ a { color: inherit; }
 .barre { display: flex; align-items: center; justify-content: space-between; gap: 20px; max-width: var(--max); margin: 0 auto; padding: 14px var(--gouttiere) 12px; }
 .barre-nom { font-weight: 700; letter-spacing: -.01em; text-decoration: none; }
 .barre-liens { display: flex; align-items: center; gap: clamp(12px, 2vw, 26px); font-size: 14.5px; }
-.barre-liens a { color: var(--texte-2); text-decoration: none; transition: color .15s; }
+.barre-liens a { padding-block: 5px; color: var(--texte-2); text-decoration: none; transition: color .15s; }
 .barre-liens a:hover { color: var(--texte); }
 .barre-liens .barre-contact { color: var(--comptoir-fond); background: var(--or); padding: 5px 12px; border-radius: 999px; font-weight: 700; }
 .barre-liens .barre-contact:hover { color: var(--comptoir-fond); background: #FFD68F; }
@@ -98,7 +98,7 @@ html[data-reseau="coupe"] .voyant { background: var(--or-fonce); box-shadow: 0 0
 .scene-liens { display: flex; flex-wrap: wrap; gap: 8px 12px; max-width: none !important; margin-top: 1.4em !important; }
 .scene-liens a { display: inline-flex; align-items: center; gap: 7px; padding: 7px 13px; border: 1px solid rgba(111, 224, 172, .3); border-radius: 999px; color: var(--texte); font-size: 15px; text-decoration: none; transition: background .15s, border-color .15s; }
 .scene-liens a:hover { background: rgba(111, 224, 172, .1); border-color: var(--neon); }
-.courriel { display: inline-flex; align-items: center; gap: 10px; color: var(--or); font: 700 clamp(18px, 1.9vw, 27px)/1.2 var(--f-titre); letter-spacing: -.012em; text-decoration: none; overflow-wrap: anywhere; }
+.courriel { display: inline-flex; align-items: center; gap: 10px; padding-block: 5px; color: var(--or); font: 700 clamp(18px, 1.9vw, 27px)/1.2 var(--f-titre); letter-spacing: -.012em; text-decoration: none; overflow-wrap: anywhere; }
 .courriel:hover span { text-decoration: underline; text-underline-offset: 4px; }
 
 /* Le téléphone */
@@ -197,9 +197,9 @@ html[data-reseau="coupe"] .terminal { box-shadow: inset 0 1px 0 rgba(255, 255, 2
   position: relative; z-index: 1; padding: 30px 18px; color: var(--encre); font: 400 14px/1.5 var(--f-mono);
   background: var(--fond-papier);
   box-shadow: 0 0 38px rgba(0, 0, 0, .62);
-  clip-path: inset(0 -60px);
+  clip-path: inset(1px -60px 0);
 }
-.papier:not(.papier-fin) { margin-bottom: -1px; }
+.papier:not(.papier-fin) { margin-bottom: -2px; }
 .papier-tete { padding-top: 34px; }
 .papier-tete::before { content: ""; position: absolute; inset: 0 0 auto; height: 30px; background: linear-gradient(180deg, rgba(0, 0, 0, .3), transparent); pointer-events: none; }
 .papier a { text-underline-offset: 2px; }
@@ -258,7 +258,7 @@ html[data-reseau="coupe"] .terminal { box-shadow: inset 0 1px 0 rgba(255, 255, 2
 .qr { display: grid; justify-items: center; gap: 6px; margin-block: 16px 22px; }
 .qr img { display: block; }
 
-.papier-fin { padding-bottom: 34px; margin-bottom: 110px; clip-path: inset(0 -60px -14px); }
+.papier-fin { padding-bottom: 34px; margin-bottom: 110px; clip-path: inset(1px -60px -14px); }
 .dechirure { position: absolute; inset: 100% 0 auto; height: 11px; background: linear-gradient(135deg, var(--papier) 50%, transparent 50.5%) 0 0 / 16px 11px repeat-x, linear-gradient(225deg, var(--papier) 50%, transparent 50.5%) 0 0 / 16px 11px repeat-x; }
 
 /* ── L'impression, une seule fois ── */
@@ -276,14 +276,14 @@ html[data-reseau="coupe"] .terminal { box-shadow: inset 0 1px 0 rgba(255, 255, 2
 @media (max-width: 1079px) {
   .barre-liens a:not(.barre-contact) { display: none; }
   .fente { display: none; }
-  .ruban { max-width: 620px; padding-inline: 0; }
+  .ruban { max-width: 620px; padding-inline: 0; overflow-x: clip; }
   .rang { display: block; }
   .rang-accueil .scene { padding: 26px var(--gouttiere) 26px; }
   .accueil { position: static; }
   .terminal { border-radius: 18px 18px 8px 8px; }
 
-  .rang:not(.rang-accueil) { background: var(--fond-papier); box-shadow: 0 0 38px rgba(0, 0, 0, .62); clip-path: inset(0 -60px); position: relative; }
-  .rang:last-child { clip-path: inset(0 -60px -14px); margin-bottom: 60px; }
+  .rang:not(.rang-accueil) { background: var(--fond-papier); box-shadow: 0 0 38px rgba(0, 0, 0, .62); clip-path: inset(1px -60px 0); position: relative; }
+  .rang:last-child { clip-path: inset(1px -60px -14px); margin-bottom: 60px; }
   .rang:not(.rang-accueil) .scene { padding: 34px 18px 2px; color: var(--encre); }
   .rang:not(.rang-accueil) .papier { background: none; box-shadow: none; clip-path: none; margin-bottom: 0; }
   .scene-colle { position: static; display: block; }
@@ -306,11 +306,13 @@ html[data-reseau="coupe"] .terminal { box-shadow: inset 0 1px 0 rgba(255, 255, 2
   .papier { padding-top: 20px; padding-bottom: 26px; }
   .papier-tete { padding-top: 34px; clip-path: inset(-8px -60px 0); }
   .papier-tete::after { content: ""; position: absolute; left: -7px; right: -7px; top: -5px; height: 9px; border-radius: 5px; background: #020403; box-shadow: 0 1px 0 rgba(255, 255, 255, .08); }
-  .rang:not(.rang-accueil) { margin-top: -1px; }
+  .rang:not(.rang-accueil) { margin-top: -2px; }
   .tirage-voir { display: inline-flex; align-items: center; gap: 7px; position: absolute; right: 8px; bottom: 8px; padding: 7px 11px; border: 0; border-radius: 999px; background: var(--encre); color: var(--papier); font: 600 12.5px/1 var(--f-mono); cursor: pointer; }
 }
 
 @media (max-width: 520px) {
+  .produit-prix small { font-size: 0; }
+  .produit-prix small::after { content: "F"; font-size: 11px; }
   .etapes li { flex-direction: column; align-items: flex-start; gap: 3px; padding: 5px 6px; }
 }
 
