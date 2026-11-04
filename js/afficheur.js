@@ -58,13 +58,13 @@
       this.pistes = [];
       this.visible = true;
       this.fin = null;
+      this.boucle = this.boucle.bind(this);
+      this.dernier = 0;
+      this.tourne = false;
       this.dimensionner();
       new ResizeObserver(() => this.dimensionner()).observe(canvas.parentElement);
       new IntersectionObserver(([e]) => { this.visible = e.isIntersecting; this.relancer(); }).observe(canvas);
       document.addEventListener('visibilitychange', () => this.relancer());
-      this.boucle = this.boucle.bind(this);
-      this.dernier = 0;
-      this.tourne = false;
       this.relancer();
     }
 
@@ -90,6 +90,7 @@
       this.retard = null;
       this.preparerDessin();
       if (this.contenu) this.montrer(...this.contenu);
+      this.relancer();
     }
 
     preparerDessin() {
@@ -183,7 +184,7 @@
     }
 
     relancer() {
-      if (this.tourne || !this.visible || document.hidden) return;
+      if (this.tourne || !this.visible || document.hidden || !this.cible) return;
       this.tourne = true;
       requestAnimationFrame(this.boucle);
     }
