@@ -9,14 +9,12 @@
   const VENTES_MONTREES = 3;
 
   const PRODUITS = [
-    { id: 'poulet', nom: 'Poulet braisé entier', prix: 5000, stock: 12, seuil: 5 },
-    { id: 'capitaine', nom: 'Capitaine braisé', prix: 4500, stock: 4, seuil: 5 },
-    { id: 'brochettes', nom: 'Brochettes de bœuf', prix: 1500, stock: 26, seuil: 10 },
-    { id: 'alloco', nom: 'Alloco', prix: 1000, stock: 3, seuil: 8 },
-    { id: 'attieke', nom: 'Attiéké', prix: 1000, stock: 30, seuil: 10 },
-    { id: 'regab', nom: 'Régab 65cl', prix: 1000, stock: 48, seuil: 24 },
-    { id: 'castel', nom: 'Castel 65cl', prix: 1200, stock: 36, seuil: 24 },
-    { id: 'bissap', nom: 'Jus de bissap', prix: 700, stock: 20, seuil: 8 },
+    { id: 'poulet', nom: 'Poulet braisé entier', court: 'POULET', mini: 'POULET', prix: 5000, stock: 12, seuil: 5 },
+    { id: 'capitaine', nom: 'Capitaine braisé', court: 'CAPITAINE', mini: 'CAPIT.', prix: 4500, stock: 4, seuil: 5 },
+    { id: 'brochettes', nom: 'Brochettes de bœuf', court: 'BROCHETTES', mini: 'BROCH.', prix: 1500, stock: 26, seuil: 10 },
+    { id: 'alloco', nom: 'Alloco', court: 'ALLOCO', mini: 'ALLOCO', prix: 1000, stock: 3, seuil: 8 },
+    { id: 'regab', nom: 'Régab 65cl', court: 'REGAB', mini: 'REGAB', prix: 1000, stock: 48, seuil: 24 },
+    { id: 'castel', nom: 'Castel 65cl', court: 'CASTEL', mini: 'CASTEL', prix: 1200, stock: 36, seuil: 24 },
   ];
 
   const $ = (s) => document.querySelector(s);
@@ -29,7 +27,7 @@
 
   const el = {
     produits: $('#produits'), encaisser: $('#encaisser'), vider: $('#vider'), reseau: $('#reseau'),
-    etat: $('#etat-reseau'), alerte: $('#alerte'), journal: $('#journal'), terminal: $('#terminal'),
+    etat: $('#etat-reseau'), sous: $('#term-sous'), alerte: $('#alerte'), journal: $('#journal'), terminal: $('#terminal'),
     ventes: $('#ticket-ventes'), lignes: $('#ticket-lignes'), vide: $('#ticket-vide'),
     total: $('#ticket-total'), somme: $('#ticket-somme'),
   };
@@ -61,40 +59,52 @@
     } catch (e) { /* mémoire illisible : on repart de zéro */ }
   }
 
-  // ── L'afficheur ──
+  // ── L'afficheur : une ligne de 12 caractères sur ordinateur, deux de 6 sur téléphone ──
+  const NOM = { une: [{ t: 'DJABIR', c: VERT }, { t: ' ALGO', c: OR }], l1: 'DJABIR', l2: 'ALGO' };
   const REPOS = [
-    { a: [{ t: 'DJABIR', c: VERT }, { t: ' ALGO', c: OR }], deux: ['DJABIR', 'ALGO'], ms: 5600 },
-    { a: 'DEVELOPPEUR FULL-STACK - LIBREVILLE, GABON' },
-    { a: [{ t: 'DJABIR', c: VERT }, { t: ' ALGO', c: OR }], deux: ['DJABIR', 'ALGO'], ms: 3200 },
-    { a: 'TOUCHEZ UN PLAT POUR ESSAYER LA CAISSE' },
+    [NOM, 6500],
+    [{ une: 'DEVELOPPEUR', l1: 'FULL', l2: 'STACK' }, 1500],
+    [{ une: 'FULL-STACK', l1: 'FULL', l2: 'STACK' }, 1500],
+    [{ une: [{ t: 'LIBREVILLE', c: OR }], l1: 'LIBRE', l2: 'VILLE' }, 1600],
+    [{ une: [{ t: 'GABON', c: OR }], l1: 'GABON', l2: '' }, 1600],
+    [NOM, 4200],
+    [{ une: 'A VOUS :', l1: 'A VOUS', l2: '' }, 1300],
+    [{ une: 'TOUCHEZ', l1: 'UN', l2: 'PLAT' }, 1300],
+    [{ une: 'UN PLAT', l1: 'UN', l2: 'PLAT' }, 1500],
   ];
   let minuteur = 0;
-  let tour = 0;
+
+  function afficher(m) {
+    if (afficheur.deuxLignes) afficheur.montrer(m.l1, m.l2);
+    else afficheur.montrer(m.une);
+  }
 
   function repos(indice = 0) {
     clearTimeout(minuteur);
-    const jeton = ++tour;
-    const scene = REPOS[indice % REPOS.length];
-    const suite = () => { if (jeton === tour) repos(indice + 1); };
-    if (scene.ms) {
-      if (afficheur.deuxLignes) afficheur.montrer(scene.deux[0], scene.deux[1]);
-      else afficheur.montrer(scene.a);
-      minuteur = setTimeout(suite, scene.ms);
-    } else {
-      afficheur.montrer(scene.a).then(() => { minuteur = setTimeout(suite, 280); });
-    }
+    const [message, duree] = REPOS[indice % REPOS.length];
+    afficher(message);
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    minuteur = setTimeout(() => repos(indice + 1), duree);
   }
 
-  function annoncer(a, b, ms = 1900) {
+  /** Une suite de messages, puis retour au total ou au repos. */
+  function annoncer(...suite) {
     clearTimeout(minuteur);
-    tour++;
-    afficheur.montrer(a, b);
-    minuteur = setTimeout(apresAnnonce, ms);
+    const etape = (i) => {
+      if (i >= suite.length) { apresAnnonce(); return; }
+      const [message, duree] = suite[i];
+      afficher(message);
+      minuteur = setTimeout(() => etape(i + 1), duree);
+    };
+    etape(0);
   }
+
+  const messageTotal = (total) => ({ une: [{ t: 'TOTAL ', c: VERT }, { t: fcfa(total), c: OR }], l1: 'TOTAL', l2: fcfa(total) });
 
   function apresAnnonce() {
     const total = totalPanier();
-    if (total) { tour++; afficheur.montrer('TOTAL', `${fcfa(total)} F`); } else repos();
+    if (total) afficher(messageTotal(total));
+    else repos();
   }
 
   // ── Calculs ──
@@ -193,16 +203,16 @@
     document.documentElement.dataset.reseau = allume ? 'allume' : 'coupe';
     el.reseau.setAttribute('aria-checked', String(allume));
     el.alerte.hidden = allume;
-    let texte = allume ? 'En ligne' : 'Hors connexion';
-    if (!allume && attente) texte = `${attente} en attente`;
-    el.etat.innerHTML = `<svg class="ico"><use href="#i-${allume ? 'wifi' : 'wifi-off'}"/></svg><span>${texte}</span>`;
+    el.etat.textContent = allume ? 'Réseau allumé' : 'Réseau coupé';
+    el.sous.textContent = attente ? `En attente de réseau : ${attente}` : 'Caisse de démonstration';
+    el.sous.classList.toggle('attente', attente > 0);
   }
 
   // ── Gestes ──
   function ajouter(id) {
     const p = PRODUITS.find((x) => x.id === id);
     if (reste(p) <= 0) {
-      annoncer(p.nom, 'RUPTURE');
+      annoncer([{ une: 'STOCK VIDE', l1: 'STOCK', l2: 'VIDE' }, 1800]);
       noter(`${p.nom} : plus en stock, la caisse refuse.`, 'attention');
       return;
     }
@@ -211,7 +221,12 @@
     dessinerPanier();
     cocher('plat');
     sauver();
-    annoncer(p.nom, `${fcfa(p.prix)} F`, 1500);
+    const avecPrix = p.court.length + fcfa(p.prix).length < 12;
+    annoncer([{
+      une: avecPrix ? [{ t: `${p.court} `, c: VERT }, { t: fcfa(p.prix), c: OR }] : p.court,
+      l1: p.mini,
+      l2: fcfa(p.prix),
+    }, 1000]);
   }
 
   function encaisser() {
@@ -242,12 +257,12 @@
       confirmer(vente);
       dessinerVentes(vente.cle);
       noter(`Vente ${numero} reçue par le serveur.`, 'bien');
-      annoncer('MERCI', `${fcfa(vente.total)} F`, 2200);
+      annoncer([{ une: [{ t: 'MERCI ', c: VERT }, { t: fcfa(vente.total), c: OR }], l1: 'MERCI', l2: fcfa(vente.total) }, 2400]);
     } else {
       dessinerVentes(vente.cle);
       cocher('vente');
       noter(`Vente ${numero} gardée sur cet appareil.`, 'attention');
-      annoncer('VENTE GARDEE', 'SUR L APPAREIL', 2400);
+      annoncer([{ une: [{ t: 'VENTE GARDEE', c: OR }], l1: 'VENTE', l2: 'GARDEE' }, 2600]);
     }
     dessinerReseau();
     sauver();
@@ -271,7 +286,7 @@
     for (const v of liste) {
       if (!etat.reseau) break;
       noter(`Vente ${v.numero} envoyée, clé ${v.cle}.`, 'bien');
-      annoncer('ENVOI', `VENTE ${v.numero}`, 1200);
+      annoncer([{ une: [{ t: 'ENVOI ', c: VERT }, { t: v.numero, c: OR }], l1: 'ENVOI', l2: v.numero }, 1500]);
       confirmer(v);
       dessinerVentes(v.cle);
       dessinerReseau();
@@ -289,7 +304,7 @@
         el.terminal.classList.add('reussi');
         noter('Rien de perdu, rien en double.', 'bien');
       }
-      annoncer('RIEN DE PERDU', 'RIEN EN DOUBLE', 3600);
+      annoncer([{ une: 'RIEN PERDU', l1: 'RIEN', l2: 'PERDU' }, 1900], [{ une: 'AUCUN DOUBLE', l1: 'AUCUN', l2: 'DOUBLE' }, 2300]);
     }
   }
 
@@ -299,14 +314,14 @@
       noter(vrai ? 'Votre réseau est revenu, pour de vrai.' : 'Réseau rallumé.');
       dessinerReseau();
       if (enAttente().length) synchroniser();
-      else annoncer('RESEAU', 'REVENU', 1600);
+      else annoncer([{ une: 'RESEAU OK', l1: 'RESEAU', l2: 'OK' }, 1700]);
     } else {
       cocher('coupe');
       sauver();
       el.terminal.classList.remove('reussi');
       noter(vrai ? 'Votre réseau vient de couper, pour de vrai.' : 'Réseau coupé. La caisse continue.', 'attention');
       dessinerReseau();
-      annoncer('RESEAU COUPE', 'ON ENCAISSE', 2400);
+      annoncer([{ une: [{ t: 'RESEAU COUPE', c: OR }], l1: 'RESEAU', l2: 'COUPE' }, 1700], [{ une: 'ON ENCAISSE', l1: 'VENTES', l2: 'OK' }, 2200]);
     }
   }
 
@@ -341,7 +356,7 @@
   el.vider.addEventListener('click', remettreAZero);
   el.reseau.addEventListener('click', () => {
     if (!etat.reseau && !navigator.onLine) {
-      annoncer('TOUJOURS', 'PAS DE RESEAU', 2000);
+      annoncer([{ une: [{ t: 'SANS RESEAU', c: OR }], l1: 'SANS', l2: 'RESEAU' }, 2000]);
       noter('Votre appareil n’a toujours pas de réseau.', 'attention');
       return;
     }

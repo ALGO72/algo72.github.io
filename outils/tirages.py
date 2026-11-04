@@ -35,7 +35,8 @@ def tirage(source, nom, haut=0.0, bas=1.0):
     l, h = image.size
     image = image.crop((0, round(h * haut), l, round(h * bas)))
     image = ImageOps.autocontrast(image, cutoff=1)
-    image = ImageEnhance.Contrast(image).enhance(1.25)
+    # Les gris clairs de l'écran doivent rester visibles en points, pas partir en blanc.
+    image = image.point(lambda v: round(255 * (v / 255) ** 1.7))
     for largeur in (384, 288):
         hauteur = round(image.height * largeur / image.width)
         reduite = image.resize((largeur, hauteur), Image.LANCZOS)

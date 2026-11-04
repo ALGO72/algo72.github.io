@@ -28,10 +28,10 @@
   const VERT = 1;
   const OR = 2;
   const TEINTES = {
-    [VERT]: ['#E9FFF4', '#7CF0BA', 'rgba(63,185,131,.34)'],
-    [OR]: ['#FFF3D9', '#FFC76B', 'rgba(232,166,59,.34)'],
+    [VERT]: ['#F2FFF9', '#7CF0BA', 'rgba(63,200,140,.5)'],
+    [OR]: ['#FFF8E8', '#FFC76B', 'rgba(240,170,60,.5)'],
   };
-  const PAS_DEFILEMENT = 52; // ms par colonne
+  const PAS_DEFILEMENT = 42; // ms par colonne
   const calme = window.matchMedia('(prefers-reduced-motion: reduce)');
 
   const sansAccent = (s) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toUpperCase();
@@ -70,10 +70,12 @@
 
     dimensionner() {
       const largeur = this.canvas.parentElement.clientWidth;
-      if (!largeur || largeur === this.largeur) return;
+      const court = window.innerHeight < 720;
+      if (!largeur || (largeur === this.largeur && court === this.court)) return;
       this.largeur = largeur;
+      this.court = court;
       this.deuxLignes = largeur < 620;
-      this.cols = this.deuxLignes ? 39 : 71;
+      this.cols = this.deuxLignes ? 39 : court ? 85 : 71;
       this.rangs = this.deuxLignes ? 17 : 9;
       this.pas = largeur / this.cols;
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -151,7 +153,7 @@
       const boucler = !!options.boucler;
 
       const piste = (colonnes, y, x) => {
-        const tropLong = colonnes.length > this.cols - 2;
+        const tropLong = colonnes.length > this.cols;
         if (tropLong && !calme.matches) {
           this.pistes.push({ colonnes, y, defile: true, debut, boucler });
         } else {
@@ -231,7 +233,7 @@
       for (let i = 0; i < lum.length; i++) {
         const voulu = cible[i] && !(retard && t < retard[i]) ? 1 : 0;
         const avant = lum[i];
-        const apres = voulu ? avant + (1 - avant) * 0.6 : avant * 0.72;
+        const apres = voulu ? avant + (1 - avant) * 0.65 : avant * 0.56;
         const net = apres < 0.012 ? 0 : apres > 0.992 ? 1 : apres;
         if (net !== avant) { lum[i] = net; bouge = true; }
       }
