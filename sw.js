@@ -19,6 +19,7 @@ const FICHIERS = [
   'img/tirage-horsligne-288.png',
   'img/tirage-cuisine-384.png',
   'img/tirage-cuisine-288.png',
+  'cv/Djabir-Abdoul-Raouf-CV.pdf',
 ];
 
 self.addEventListener('install', (e) => {

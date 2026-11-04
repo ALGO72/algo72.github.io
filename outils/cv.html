@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>CV de Djabir Abdoul Raouf</title>
+<style>
+  @font-face { font-family: "Space Grotesk"; src: url(../fonts/space-grotesk-500to700-latin.woff2) format("woff2"); font-weight: 500 700; }
+  @font-face { font-family: "IBM Plex Mono"; src: url(../fonts/ibm-plex-mono-400-latin.woff2) format("woff2"); font-weight: 400; }
+  @font-face { font-family: "IBM Plex Mono"; src: url(../fonts/ibm-plex-mono-600-latin.woff2) format("woff2"); font-weight: 600; }
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { width: 210mm; height: 297mm; color: #17241D; font: 500 9.6pt/1.42 "Space Grotesk", sans-serif; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  header { padding: 13mm 15mm 9mm; background: #0B3325; color: #EAF6F0; }
+  h1 { font-size: 25pt; line-height: 1; letter-spacing: -.02em; }
+  .role { margin-top: 2.2mm; color: #6FE0AC; font-size: 11pt; font-weight: 700; }
+  .contact { margin-top: 3mm; color: #C4D8CD; font: 400 8.2pt/1.5 "IBM Plex Mono", monospace; }
+  .contact a { color: inherit; text-decoration: none; }
+  .contact b { color: #FFC76B; font-weight: 400; margin-inline: 1.4mm; }
+  main { padding: 7mm 15mm 0; }
+  section { margin-bottom: 4.6mm; }
+  h2 { margin-bottom: 1.8mm; padding-bottom: .9mm; border-bottom: .35mm solid #17241D; font: 600 8.8pt/1.2 "IBM Plex Mono", monospace; letter-spacing: .08em; text-transform: uppercase; }
+  .ligne { display: flex; justify-content: space-between; gap: 6mm; font-weight: 700; }
+  .ligne span { flex: none; color: #4F5F56; font: 400 8pt/1.5 "IBM Plex Mono", monospace; }
+  .note { color: #4F5F56; font-size: 9.1pt; }
+  ul { list-style: none; margin-top: .8mm; }
+  li { position: relative; padding-left: 3.6mm; }
+  li::before { content: ""; position: absolute; left: 0; top: 2mm; width: 1.4mm; height: 1.4mm; background: #0E6B4C; }
+  .bloc + .bloc { margin-top: 2.6mm; }
+  .chiffres { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2mm; margin-top: 2.2mm; }
+  .chiffres div { padding: 1.5mm 2mm; background: #F2F1EA; font: 400 7.6pt/1.35 "IBM Plex Mono", monospace; }
+  .chiffres b { display: block; font-size: 10.5pt; font-weight: 600; }
+  dl { display: grid; grid-template-columns: 27mm 1fr; gap: .5mm 3mm; }
+  dt { font-weight: 700; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Djabir Abdoul Raouf</h1>
+  <p class="role">Développeur full-stack · Fondateur de Gab-POS Tech</p>
+  <p class="contact">Libreville, Gabon<b>·</b><a href="mailto:djabirabdoulraouf72@gmail.com">djabirabdoulraouf72@gmail.com</a><b>·</b><a href="https://algo72.github.io">algo72.github.io</a><br><a href="https://www.linkedin.com/in/djabir-abdoul-raouf">linkedin.com/in/djabir-abdoul-raouf</a><b>·</b><a href="https://gabpostech.com">gabpostech.com</a><b>·</b><a href="https://www.youtube.com/@gabpostech">youtube.com/@gabpostech</a></p>
+</header>
+<main>
+  <section>
+    <h2>Profil</h2>
+    <p>Développeur full-stack JavaScript. J’ai conçu et mis en production un logiciel de caisse et de gestion pour les commerces et restaurants du Gabon, de la base de données au déploiement. Je livre un produit complet et utilisable : interface, API, données, hébergement, documentation et vidéos de formation. Je travaille avec une IA de code : je décide, je relis, je teste et je réponds de ce qui part en production.</p>
+  </section>
+
+  <section>
+    <h2>Expérience</h2>
+    <div class="bloc">
+      <p class="ligne">Fondateur et développeur, Gab-POS Tech <span>Libreville · 2025 – aujourd’hui</span></p>
+      <p class="note">Logiciel de caisse, de stock et de gestion d’équipe en ligne, pour boutiques, restaurants et maquis. En production, avec des clients payants.</p>
+      <ul>
+        <li>Caisse tactile, plan de salle, écran de cuisine en temps réel, stock et alertes, fournisseurs, personnel, fidélité, rapports PDF et Excel.</li>
+        <li>Application multi-établissements avec offres d’abonnement, essai gratuit et espace d’administration.</li>
+        <li>Application web progressive : les ventes continuent hors connexion et se synchronisent seules, sans doublon.</li>
+        <li>Notifications sur téléphone, paiement Airtel Money et Moov Money à la caisse.</li>
+        <li>Mise en production sur Vercel, Render et Aiven, sauvegardes chiffrées vérifiées, journal d’audit, pages légales.</li>
+        <li>Site vitrine référencé sur Google, guides d’utilisation, vidéos de démonstration, installation et formation des clients.</li>
+      </ul>
+      <div class="chiffres">
+        <div><b>1 264</b>tests automatiques</div>
+        <div><b>115</b>pull requests fusionnées</div>
+        <div><b>38</b>tables en base</div>
+        <div><b>37</b>attaques testées, bloquées</div>
+      </div>
+    </div>
+    <div class="bloc">
+      <p class="ligne">Stagiaire développeur, CDTIC, Université de Ngaoundéré <span>Ngaoundéré · juil. – août 2024</span></p>
+      <ul><li>Système de gestion des présences des étudiants pour l’Institut Supérieur ISSTMADD.</li></ul>
+    </div>
+    <div class="bloc">
+      <p class="ligne">Stagiaire développeur, Butterfly Company SARL <span>Ngaoundéré · août – sept. 2022</span></p>
+      <ul><li>Système de suivi des tâches des employés, interface d’un site e-commerce, initiation à l’infographie.</li></ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>Compétences</h2>
+    <dl>
+      <dt>Front-end</dt><dd>React, JavaScript moderne, Tailwind CSS, Vite, PWA, HTML, CSS, React Native (bases)</dd>
+      <dt>Back-end</dt><dd>Node.js, Express, API REST, JWT, WebSocket, Web Push, PHP</dd>
+      <dt>Données</dt><dd>MySQL, Prisma, modélisation multi-commerce, migrations, sauvegardes</dd>
+      <dt>Déploiement</dt><dd>Git, GitHub, GitHub Actions, tests automatisés, Vercel, Render, Aiven, DNS, PowerShell</dd>
+      <dt>Design</dt><dd>Figma, Photoshop, Illustrator, identité visuelle, montage vidéo par script</dd>
+    </dl>
+  </section>
+
+  <section>
+    <h2>Formation</h2>
+    <div class="bloc">
+      <p class="ligne">Génie logiciel (cycle BTS), Institut Supérieur ISSTMADD <span>Ngaoundéré · 2023 – 2025</span></p>
+      <p class="note">Deux années de formation suivies. Délégué de spécialité, membre du bureau des étudiants, président du club informatique.</p>
+    </div>
+    <div class="bloc"><p class="ligne">Baccalauréat TI (technologie de l’informatique), Lycée Classique Moderne <span>Ngaoundéré</span></p></div>
+  </section>
+
+  <section>
+    <h2>Distinction</h2>
+    <p class="ligne">Challenge de l’étudiant-entrepreneur, présélection zonale, pôle Septentrion <span>mai 2025</span></p>
+    <p class="note">Programme Youth Connekt Cameroon (Ministère de la Jeunesse, PNUD, ONU Femmes).</p>
+  </section>
+</main>
+</body>
+</html>

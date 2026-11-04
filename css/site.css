@@ -121,7 +121,7 @@ html[data-reseau="coupe"] .voyant { background: var(--or-fonce); box-shadow: 0 0
 /* ── Accueil ── */
 .rang-accueil .scene { padding-block: 30px 44px; }
 .accueil { position: sticky; top: 16px; display: grid; grid-template-columns: minmax(0, .82fr) minmax(0, 1fr); gap: clamp(20px, 2.6vw, 38px); align-items: start; }
-h1 { font: 700 clamp(35px, 3.4vw, 50px)/1.04 var(--f-titre); letter-spacing: -.028em; text-wrap: balance; }
+h1 { font: 700 clamp(34px, 3.2vw, 47px)/1.05 var(--f-titre); letter-spacing: -.028em; text-wrap: balance; }
 .chapeau { margin-top: 1em; color: #C4D8CD; font-size: 16.5px; line-height: 1.5; }
 
 /* ── La caisse ── */
@@ -199,6 +199,7 @@ html[data-reseau="coupe"] .terminal { box-shadow: inset 0 1px 0 rgba(255, 255, 2
   box-shadow: 0 0 38px rgba(0, 0, 0, .62);
   clip-path: inset(0 -60px);
 }
+.papier:not(.papier-fin) { margin-bottom: -1px; }
 .papier-tete { padding-top: 34px; }
 .papier-tete::before { content: ""; position: absolute; inset: 0 0 auto; height: 30px; background: linear-gradient(180deg, rgba(0, 0, 0, .3), transparent); pointer-events: none; }
 .papier a { text-underline-offset: 2px; }
@@ -277,7 +278,7 @@ html[data-reseau="coupe"] .terminal { box-shadow: inset 0 1px 0 rgba(255, 255, 2
   .fente { display: none; }
   .ruban { max-width: 620px; padding-inline: 0; }
   .rang { display: block; }
-  .rang-accueil .scene { padding: 26px var(--gouttiere) 34px; }
+  .rang-accueil .scene { padding: 26px var(--gouttiere) 26px; }
   .accueil { position: static; }
   .terminal { border-radius: 18px 18px 8px 8px; }
 
@@ -303,7 +304,9 @@ html[data-reseau="coupe"] .terminal { box-shadow: inset 0 1px 0 rgba(255, 255, 2
   .scene :focus-visible { outline-color: var(--encre); }
   .courriel { color: var(--encre); }
   .papier { padding-top: 20px; padding-bottom: 26px; }
-  .papier-tete { padding-top: 34px; }
+  .papier-tete { padding-top: 34px; clip-path: inset(-8px -60px 0); }
+  .papier-tete::after { content: ""; position: absolute; left: -7px; right: -7px; top: -5px; height: 9px; border-radius: 5px; background: #020403; box-shadow: 0 1px 0 rgba(255, 255, 255, .08); }
+  .rang:not(.rang-accueil) { margin-top: -1px; }
   .tirage-voir { display: inline-flex; align-items: center; gap: 7px; position: absolute; right: 8px; bottom: 8px; padding: 7px 11px; border: 0; border-radius: 999px; background: var(--encre); color: var(--papier); font: 600 12.5px/1 var(--f-mono); cursor: pointer; }
 }
 

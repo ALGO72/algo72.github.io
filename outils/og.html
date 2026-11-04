@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Aperçu pour les réseaux</title>
+<link rel="stylesheet" href="../css/site.css">
+<style>
+  html, body { width: 1200px; height: 627px; overflow: hidden; }
+  .og { position: relative; width: 1200px; height: 627px; padding: 34px 38px; overflow: hidden; }
+  .og h1 { width: 610px; margin-top: 44px; font-size: 56px; line-height: 1.03; }
+  .og p.sous { margin-top: 20px; color: #C4D8CD; font-size: 22px; }
+  .og .papier { position: absolute; right: 74px; top: 227px; width: 390px; height: 420px; padding: 34px 18px; clip-path: none; }
+</style>
+</head>
+<body>
+<div class="og">
+  <div class="machine" style="z-index:3">
+    <div class="vitre"><canvas id="afficheur"></canvas></div>
+    <div class="machine-pied">
+      <span class="voyant"></span><span class="machine-texte">GAB-POS · CAISSE 1</span>
+      <span class="fente" style="right:54px;width:410px"></span>
+    </div>
+  </div>
+  <h1>Mes logiciels encaissent même quand le réseau coupe.</h1>
+  <p class="sous">Développeur full-stack à Libreville</p>
+  <div class="papier papier-tete">
+    <p class="double c">DJABIR ABDOUL RAOUF</p>
+    <p class="c">Fondateur de Gab-POS Tech</p>
+    <hr class="tirets">
+    <ul class="lignes">
+      <li><span>Logiciel en production</span><i></i><b>08/2026</b></li>
+      <li><span>Tests automatiques</span><i></i><b>1 264</b></li>
+      <li><span>Marche hors connexion</span><i></i><b>oui</b></li>
+    </ul>
+    <p class="recu-total"><span>À ESSAYER</span><span>ICI</span></p>
+  </div>
+</div>
+<script src="../js/afficheur.js"></script>
+<script>
+  document.fonts.ready.then(() => {
+    const a = new window.Afficheur(document.getElementById('afficheur'));
+    a.montrer([{ t: 'DJABIR', c: 1 }, { t: ' ALGO', c: 2 }]);
+    setTimeout(() => { window.pret = true; }, 900);
+  });
+</script>
+</body>
+</html>
