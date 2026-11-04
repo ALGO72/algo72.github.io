@@ -313,8 +313,8 @@
     if (voulu) {
       noter(vrai ? 'Votre réseau est revenu, pour de vrai.' : 'Réseau rallumé.');
       dessinerReseau();
+      annoncer([{ une: 'RESEAU OK', l1: 'RESEAU', l2: 'OK' }, 1700]);
       if (enAttente().length) synchroniser();
-      else annoncer([{ une: 'RESEAU OK', l1: 'RESEAU', l2: 'OK' }, 1700]);
     } else {
       cocher('coupe');
       sauver();

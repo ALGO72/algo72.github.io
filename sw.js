@@ -1,7 +1,7 @@
 /* Hors connexion : la page et ses fichiers sont gardés sur l'appareil. La page
    se recharge d'abord depuis le réseau ; sans réseau, depuis cette réserve. Les
    vidéos, plus lourdes, ne sont gardées qu'une fois regardées. */
-const RESERVE = 'portfolio-v1';
+const RESERVE = 'portfolio-v2';
 const FICHIERS = [
   './',
   'css/site.css',
