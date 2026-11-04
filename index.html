@@ -1,192 +1,468 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Djabir Abdoul Raouf — développeur full-stack, Libreville</title>
-<meta name="description" content="Développeur full-stack JavaScript à Libreville. J'ai conçu et mis en production Gab-POS Tech, un logiciel de caisse et de gestion pour les commerces et restaurants du Gabon.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Djabir Abdoul Raouf, développeur full-stack à Libreville</title>
+<meta name="description" content="Développeur full-stack à Libreville, fondateur de Gab-POS Tech : un logiciel de caisse en production au Gabon, qui encaisse même quand le réseau coupe. Essayez-le ici.">
+<link rel="canonical" href="https://algo72.github.io/">
+<meta name="theme-color" content="#0B3325">
+<meta name="color-scheme" content="dark">
 <link rel="icon" href="img/favicon.png">
-<meta property="og:title" content="Djabir Abdoul Raouf — développeur full-stack">
-<meta property="og:description" content="J'ai conçu et mis en production Gab-POS Tech, un logiciel de caisse et de gestion pour les commerces du Gabon.">
-<meta property="og:image" content="img/avatar.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg: #F6F7F4; --surface: #FFFFFF; --ink: #17241D; --muted: #5B6770;
-    --line: #E1E5E0; --accent: #0E6B4C; --accent-soft: #E3F1EA; --amber: #E8A63B;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --bg: #0F1613; --surface: #17211C; --ink: #EEF2EF; --muted: #9AA7A0;
-      --line: #263129; --accent: #3FB58A; --accent-soft: #163427;
-    }
-  }
-  * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body {
-    margin: 0; background: var(--bg); color: var(--ink);
-    font: 16px/1.6 Inter, system-ui, sans-serif; -webkit-font-smoothing: antialiased;
-  }
-  a { color: var(--accent); text-decoration: none; }
-  a:hover { text-decoration: underline; }
-  .wrap { max-width: 720px; margin: 0 auto; padding: 0 20px; }
-  h1, h2, h3 { font-family: "Space Grotesk", Inter, sans-serif; letter-spacing: -0.01em; margin: 0; }
-  h2 { font-size: 1.05rem; text-transform: uppercase; letter-spacing: .08em; color: var(--accent); margin-bottom: 14px; }
-  section { padding: 36px 0; border-top: 1px solid var(--line); }
-  p { margin: 0 0 12px; }
-
-  /* En-tête */
-  header { padding: 56px 0 40px; }
-  .hero { display: flex; gap: 24px; align-items: center; }
-  .hero img { width: 96px; height: 96px; border-radius: 50%; flex: none; box-shadow: 0 2px 12px rgba(0,0,0,.12); }
-  .hero h1 { font-size: 1.9rem; line-height: 1.15; }
-  .hero .role { color: var(--accent); font-weight: 600; margin: 6px 0 2px; }
-  .hero .where { color: var(--muted); font-size: .95rem; }
-  .links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
-  .links a {
-    display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px;
-    border: 1px solid var(--line); border-radius: 999px; background: var(--surface);
-    color: var(--ink); font-size: .92rem; font-weight: 500;
-  }
-  .links a:hover { border-color: var(--accent); text-decoration: none; }
-  .links svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-
-  /* Carte projet */
-  .card {
-    background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 22px;
-  }
-  .card-head { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
-  .card-head img { width: 44px; height: 44px; border-radius: 10px; }
-  .card-head h3 { font-size: 1.2rem; }
-  .card-head small { display: block; color: var(--muted); font-size: .88rem; }
-  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 14px 0 0; padding: 0; list-style: none; }
-  .tags li { font-size: .8rem; padding: 4px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-weight: 500; }
-  .facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 16px 0 0; padding: 0; list-style: none; }
-  .facts li { border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font-size: .88rem; color: var(--muted); }
-  .facts strong { display: block; color: var(--ink); font-size: 1rem; font-family: "Space Grotesk", sans-serif; }
-  @media (max-width: 520px) { .facts { grid-template-columns: 1fr 1fr; } .hero { flex-direction: column; align-items: flex-start; } }
-
-  /* Principes */
-  .rules { display: grid; gap: 14px; margin: 0; padding: 0; list-style: none; }
-  .rules li { padding-left: 18px; border-left: 3px solid var(--amber); }
-  .rules b { display: block; font-weight: 600; }
-  .rules span { color: var(--muted); font-size: .95rem; }
-
-  /* Compétences / parcours */
-  dl { display: grid; grid-template-columns: 130px 1fr; gap: 8px 16px; margin: 0; }
-  dt { font-weight: 600; font-size: .92rem; }
-  dd { margin: 0; color: var(--muted); font-size: .95rem; }
-  @media (max-width: 520px) { dl { grid-template-columns: 1fr; gap: 2px 0; } dd { margin-bottom: 10px; } }
-  .timeline { margin: 0; padding: 0; list-style: none; }
-  .timeline li { display: grid; grid-template-columns: 110px 1fr; gap: 12px; padding: 8px 0; border-bottom: 1px dashed var(--line); font-size: .95rem; }
-  .timeline li:last-child { border-bottom: 0; }
-  .timeline time { color: var(--muted); font-variant-numeric: tabular-nums; }
-  @media (max-width: 520px) { .timeline li { grid-template-columns: 1fr; gap: 0; } }
-
-  footer { padding: 32px 0 48px; color: var(--muted); font-size: .85rem; border-top: 1px solid var(--line); }
-</style>
+<meta property="og:type" content="profile">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:url" content="https://algo72.github.io/">
+<meta property="og:site_name" content="Djabir Abdoul Raouf">
+<meta property="og:title" content="Djabir Abdoul Raouf, développeur full-stack à Libreville">
+<meta property="og:description" content="Mes logiciels encaissent même quand le réseau coupe. Une vraie petite caisse à essayer, et tout mon parcours sur un seul ticket.">
+<meta property="og:image" content="https://algo72.github.io/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+<meta property="og:image:alt" content="Afficheur de caisse lumineux : Djabir Algo, développeur full-stack à Libreville">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" href="fonts/space-grotesk-500to700-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/ibm-plex-mono-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/site.css">
+<script>document.documentElement.classList.add('js')</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Djabir Abdoul Raouf",
+  "alternateName": "Djabir Algo",
+  "jobTitle": "Développeur full-stack",
+  "url": "https://algo72.github.io/",
+  "email": "mailto:djabirabdoulraouf72@gmail.com",
+  "address": { "@type": "PostalAddress", "addressLocality": "Libreville", "addressCountry": "GA" },
+  "worksFor": { "@type": "Organization", "name": "Gab-POS Tech", "url": "https://gabpostech.com" },
+  "sameAs": [
+    "https://www.linkedin.com/in/djabir-abdoul-raouf",
+    "https://github.com/ALGO72",
+    "https://www.youtube.com/@gabpostech"
+  ]
+}
+</script>
 </head>
 <body>
-<div class="wrap">
 
-  <header>
-    <div class="hero">
-      <img src="img/avatar.png" alt="Monogramme DA — Djabir Abdoul Raouf" width="96" height="96">
-      <div>
-        <h1>Djabir Abdoul Raouf</h1>
-        <div class="role">Développeur full-stack · Fondateur de Gab-POS Tech</div>
-        <div class="where">Libreville, Gabon</div>
-      </div>
-    </div>
-    <p style="margin-top:22px;font-size:1.08rem">
-      Je construis des logiciels complets et utilisables, pour des gens qui n'ont pas le temps
-      d'apprendre un logiciel. Le dernier en date : une caisse pour les commerces et restaurants
-      du Gabon, de la base de données jusqu'au déploiement, seul.
-    </p>
-    <div class="links">
-      <a href="mailto:djabirabdoulraouf72@gmail.com"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>djabirabdoulraouf72@gmail.com</a>
-      <a href="https://www.linkedin.com/in/djabir-abdoul-raouf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a>
-      <a href="https://gabpostech.com" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>gabpostech.com</a>
-      <a href="https://www.youtube.com/@gabpostech" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M22.5 6.4a3 3 0 0 0-2.1-2.1C18.5 4 12 4 12 4s-6.5 0-8.4.3A3 3 0 0 0 1.5 6.4 31 31 0 0 0 1.2 12a31 31 0 0 0 .3 5.6 3 3 0 0 0 2.1 2.1C5.5 20 12 20 12 20s6.5 0 8.4-.3a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .3-5.6 31 31 0 0 0-.3-5.6z"/><path d="m10 15 5-3-5-3z"/></svg>YouTube</a>
-    </div>
-  </header>
+<a class="evitement" href="#caisse">Aller au contenu</a>
 
-  <section id="projet">
-    <h2>Ce que j'ai construit</h2>
-    <div class="card">
-      <div class="card-head">
-        <img src="img/gabpos-icon.svg" alt="Logo Gab-POS Tech">
-        <div>
-          <h3>Gab-POS Tech</h3>
-          <small>Logiciel de caisse, de stock et de gestion d'équipe — 2025 à aujourd'hui</small>
+<svg class="sprite" aria-hidden="true" width="0" height="0">
+  <symbol id="i-wifi" viewBox="0 0 24 24"><path d="M12 20h.01"/><path d="M2 8.82a15 15 0 0 1 20 0"/><path d="M5 12.859a10 10 0 0 1 14 0"/><path d="M8.5 16.429a5 5 0 0 1 7 0"/></symbol>
+  <symbol id="i-wifi-off" viewBox="0 0 24 24"><path d="M12 20h.01"/><path d="M8.5 16.429a5 5 0 0 1 7 0"/><path d="M5 12.859a10 10 0 0 1 5.17-2.69"/><path d="M19 12.859a10 10 0 0 0-2.007-1.523"/><path d="M2 8.82a15 15 0 0 1 4.177-2.643"/><path d="M22 8.82a15 15 0 0 0-11.288-3.764"/><path d="m2 2 20 20"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></symbol>
+  <symbol id="i-cv" viewBox="0 0 24 24"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M12 18v-6"/><path d="m9 15 3 3 3-3"/></symbol>
+  <symbol id="i-sortie" viewBox="0 0 24 24"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></symbol>
+  <symbol id="i-ok" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-vider" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></symbol>
+  <symbol id="i-lecture" viewBox="0 0 24 24"><polygon points="6 3 20 12 6 21 6 3"/></symbol>
+</svg>
+
+<header class="barre">
+  <a class="barre-nom" href="#caisse">Djabir Abdoul Raouf</a>
+  <nav class="barre-liens" aria-label="Sections de la page">
+    <a href="#projet">Le projet</a>
+    <a href="#pannes">Les pannes</a>
+    <a href="#competences">Compétences</a>
+    <a href="#parcours">Parcours</a>
+    <a class="barre-contact" href="#contact">M’écrire</a>
+  </nav>
+</header>
+
+<div class="socle">
+  <div class="machine">
+    <div class="vitre">
+      <canvas id="afficheur" role="img" aria-label="Afficheur lumineux de caisse : Djabir Algo, développeur full-stack à Libreville."></canvas>
+    </div>
+    <div class="machine-pied">
+      <span class="voyant" aria-hidden="true"></span>
+      <span class="machine-texte">GAB-POS · CAISSE 1</span>
+      <span class="fente" aria-hidden="true"></span>
+    </div>
+  </div>
+</div>
+
+<main class="ruban">
+
+  <!-- ─────────── La caisse ─────────── -->
+  <section class="rang rang-accueil" id="caisse">
+    <div class="scene">
+      <div class="accueil">
+        <div class="accueil-texte">
+          <h1>Mes logiciels encaissent même quand le réseau coupe.</h1>
+          <p class="chapeau">Je suis Djabir, développeur full-stack à Libreville. J’ai créé Gab-POS Tech, la caisse que des restaurants du Gabon utilisent chaque jour. En voici une version miniature, à essayer tout de suite.</p>
+        </div>
+
+        <div class="terminal" id="terminal">
+          <div class="term-tete">
+            <div>
+              <p class="term-nom">Le Maquis du Rond-Point</p>
+              <p class="term-sous">Caisse de démonstration</p>
+            </div>
+            <p class="term-etat" id="etat-reseau"><svg class="ico"><use href="#i-wifi"/></svg><span>En ligne</span></p>
+          </div>
+
+          <ol class="etapes" aria-label="Quatre gestes à essayer">
+            <li data-etape="plat"><span>1</span>Touchez un plat</li>
+            <li data-etape="coupe"><span>2</span>Coupez le réseau</li>
+            <li data-etape="vente"><span>3</span>Encaissez</li>
+            <li data-etape="retour"><span>4</span>Rallumez</li>
+          </ol>
+
+          <p class="term-alerte" id="alerte" hidden>Pas de connexion : vous pouvez continuer à encaisser. Les ventes sont gardées sur cet appareil et partiront toutes seules au retour du réseau.</p>
+
+          <div class="produits" id="produits"></div>
+
+          <div class="term-bas">
+            <div class="term-commandes">
+              <button class="interrupteur" id="reseau" type="button" role="switch" aria-checked="true">
+                <span class="int-piste"><span class="int-bouton"></span></span>
+                <span class="int-texte">Réseau</span>
+              </button>
+              <div class="modes" role="radiogroup" aria-label="Mode de paiement">
+                <label><input type="radio" name="mode" value="Espèces" checked><span>Espèces</span></label>
+                <label><input type="radio" name="mode" value="Airtel Money"><span>Airtel</span></label>
+                <label><input type="radio" name="mode" value="Moov Money"><span>Moov</span></label>
+              </div>
+            </div>
+            <div class="term-action">
+              <button class="vider" id="vider" type="button" aria-label="Tout remettre à zéro" title="Tout remettre à zéro"><svg class="ico"><use href="#i-vider"/></svg></button>
+              <button class="encaisser" id="encaisser" type="button" disabled>Encaisser</button>
+            </div>
+          </div>
+
+          <ol class="journal" id="journal" aria-live="polite" aria-label="Journal de la caisse"></ol>
+          <p class="term-fin">Rien de perdu, rien en double. C’est ce que fait Gab-POS Tech en plein service. <a href="#projet">Voir le vrai logiciel</a></p>
         </div>
       </div>
-      <p>
-        Une caisse tactile pour les boutiques, restaurants et maquis du Gabon, qui tourne sur le
-        téléphone ou l'ordinateur que le commerçant a déjà. Elle continue d'encaisser quand la
-        connexion coupe, et les ventes remontent seules au retour du réseau.
-      </p>
-      <p>
-        Stock et alertes, fournisseurs, personnel, fidélité, rapports PDF et Excel, écran de cuisine en
-        temps réel, paiement Mobile Money, offres d'abonnement avec essai gratuit. Plus le site, les
-        guides, les vidéos de formation et l'installation sur place.
-      </p>
-      <ul class="facts">
-        <li><strong>1 personne</strong>conception, code, déploiement</li>
-        <li><strong>Hors ligne</strong>PWA, ventes synchronisées</li>
-        <li><strong>En production</strong>gabpostech.com</li>
+    </div>
+
+    <div class="papier papier-tete">
+      <div class="imp">
+        <p class="double c">DJABIR ABDOUL RAOUF</p>
+        <p class="c">Développeur full-stack<br>Fondateur de Gab-POS Tech<br>Libreville, Gabon</p>
+      </div>
+      <hr class="tirets imp">
+      <ul class="lignes imp">
+        <li><span>Logiciel en production</span><i></i><b>depuis 08/2026</b></li>
+        <li><span>Restaurants clients</span><i></i><b data-v="clients">2</b></li>
+        <li><span>Tests automatiques</span><i></i><b data-v="tests">1 264</b></li>
+        <li><span>Marche hors connexion</span><i></i><b>oui</b></li>
       </ul>
-      <ul class="tags">
-        <li>React</li><li>Tailwind CSS</li><li>Node.js</li><li>Express</li><li>Prisma</li><li>MySQL</li>
-        <li>WebSocket</li><li>PWA</li><li>Vercel</li><li>Render</li><li>Aiven</li>
-      </ul>
-      <p style="margin:16px 0 0"><a href="https://gabpostech.com" target="_blank" rel="noopener">Voir le site →</a>
-        &nbsp;·&nbsp; <a href="https://www.youtube.com/@gabpostech" target="_blank" rel="noopener">Voir la démo vidéo →</a></p>
+      <hr class="tirets imp">
+      <div id="ticket-ventes"></div>
+      <div id="ticket-panier" class="imp">
+        <p class="double c">TICKET EN COURS</p>
+        <p class="c vide" id="ticket-vide">Aucun article pour l’instant.<br>Touchez un plat sur la caisse :<br>il s’imprimera ici.</p>
+        <ul class="vente-lignes" id="ticket-lignes"></ul>
+        <p class="recu-total" id="ticket-total" hidden><span>TOTAL</span><span id="ticket-somme"></span></p>
+      </div>
+      <hr class="tirets imp">
+      <p class="c petit imp">Ce ticket continue en bas de la page :<br>mon travail, mes pannes, mon parcours.</p>
     </div>
   </section>
 
-  <section id="principes">
-    <h2>Comment je travaille</h2>
-    <ul class="rules">
-      <li><b>Le mot suit la donnée.</b><span>Tant que les charges ne sont pas saisies, l'écran écrit « marge », pas « bénéfice ». Un logiciel qui flatte le patron finit par lui mentir.</span></li>
-      <li><b>Le réseau coupe, le logiciel non.</b><span>Tout est pensé pour une connexion irrégulière : on encaisse d'abord, on synchronise après.</span></li>
-      <li><b>Livrer, pas démontrer.</b><span>Un produit n'existe que quand quelqu'un peut s'en servir sans moi : hébergement, sauvegardes, guides, formation.</span></li>
-    </ul>
+  <!-- ─────────── Le projet ─────────── -->
+  <section class="rang" id="projet">
+    <div class="scene">
+      <div class="scene-colle">
+        <div>
+          <h2>Une caisse pensée pour les commerces du Gabon.</h2>
+          <p>Un maquis, une boutique ou un restaurant l’installe sur le téléphone ou l’ordinateur qu’il a déjà. En FCFA, en français, avec Airtel et Moov à la caisse.</p>
+          <p class="scene-liens">
+            <a href="https://gabpostech.com" target="_blank" rel="noopener">gabpostech.com<svg class="ico"><use href="#i-sortie"/></svg></a>
+            <a href="https://www.youtube.com/@gabpostech" target="_blank" rel="noopener">Les vidéos<svg class="ico"><use href="#i-sortie"/></svg></a>
+          </p>
+        </div>
+        <figure class="tel">
+          <video muted loop playsinline preload="none" poster="img/poster-vente.jpg" data-src="video/vente.mp4" aria-label="Vidéo : une vente encaissée sur Gab-POS Tech, avec le reçu."></video>
+        </figure>
+      </div>
+    </div>
+    <div class="papier">
+      <p class="inverse imp"><span>GAB-POS TECH</span></p>
+      <p class="c imp">Logiciel de caisse, de stock et d’équipe.<br>Conçu, codé et mis en ligne par moi.</p>
+      <figure class="tirage imp" data-video="video/vente.mp4" data-poster="img/poster-vente.jpg" data-legende="Une vente, filmée sur l’appli.">
+        <picture>
+          <source media="(max-width: 420px)" srcset="img/tirage-caisse-288.png" width="288" height="317">
+          <img src="img/tirage-caisse-384.png" width="384" height="423" loading="lazy" alt="Écran de caisse de Gab-POS Tech, imprimé en noir et blanc comme sur un ticket : les plats et leurs prix en FCFA.">
+        </picture>
+        <button class="tirage-voir" type="button"><svg class="ico"><use href="#i-lecture"/></svg>Voir en vrai</button>
+      </figure>
+      <p class="titre-bloc imp">DANS LE LOGICIEL</p>
+      <ul class="lignes imp">
+        <li><span>Caisse tactile et reçus</span><i></i><b>ok</b></li>
+        <li><span>Plan de salle et commandes</span><i></i><b>ok</b></li>
+        <li><span>Écran de cuisine en direct</span><i></i><b>ok</b></li>
+        <li><span>Stock, alertes, fournisseurs</span><i></i><b>ok</b></li>
+        <li><span>Équipe, rôles et codes</span><i></i><b>ok</b></li>
+        <li><span>Fidélité clients</span><i></i><b>ok</b></li>
+        <li><span>Rapports PDF et Excel</span><i></i><b>ok</b></li>
+        <li><span>Plusieurs établissements</span><i></i><b>ok</b></li>
+        <li><span>Abonnements, essai 7 jours</span><i></i><b>ok</b></li>
+      </ul>
+      <p class="titre-bloc imp">AUTOUR DU CODE</p>
+      <ul class="lignes imp">
+        <li><span>Site et pages Google</span><i></i><b>fait</b></li>
+        <li><span>Guides et vidéos de formation</span><i></i><b>fait</b></li>
+        <li><span>Contrats et pages légales</span><i></i><b>fait</b></li>
+        <li><span>Installation chez le client</span><i></i><b>fait</b></li>
+      </ul>
+      <p class="petit imp">React · Vite · Tailwind CSS · Node.js · Express · Prisma · MySQL · Socket.IO · PWA · Vercel · Render · Aiven</p>
+    </div>
   </section>
 
-  <section id="competences">
-    <h2>Compétences</h2>
-    <dl>
-      <dt>Front-end</dt><dd>React, JavaScript moderne, Tailwind CSS, Vite, PWA, HTML / CSS</dd>
-      <dt>Back-end</dt><dd>Node.js, Express, API REST, authentification JWT, WebSocket, PHP</dd>
-      <dt>Données</dt><dd>MySQL, Prisma, modélisation multi-établissements, migrations, sauvegardes</dd>
-      <dt>Déploiement</dt><dd>Git / GitHub, Vercel, Render, Aiven, DNS et domaines, tests automatisés</dd>
-      <dt>Design</dt><dd>Figma, Photoshop, Illustrator — maquettes, identité visuelle, supports vidéo</dd>
-    </dl>
+  <!-- ─────────── Hors connexion ─────────── -->
+  <section class="rang" id="hors-connexion">
+    <div class="scene">
+      <div class="scene-colle">
+        <div>
+          <h2>Le réseau coupe. La vente continue.</h2>
+          <p>Un soir de service, la connexion peut tomber à tout moment. La caisse ne doit pas s’en apercevoir, et le patron ne doit rien perdre.</p>
+        </div>
+        <figure class="tel">
+          <video muted loop playsinline preload="none" poster="img/poster-coupure.jpg" data-src="video/coupure.mp4" aria-label="Vidéo : le réseau est coupé, la vente est encaissée, puis elle remonte au retour du réseau."></video>
+        </figure>
+      </div>
+    </div>
+    <div class="papier">
+      <p class="inverse imp"><span>SANS RÉSEAU</span></p>
+      <figure class="tirage imp" data-video="video/coupure.mp4" data-poster="img/poster-coupure.jpg" data-legende="Une vente faite sans réseau, filmée sur l’appli.">
+        <picture>
+          <source media="(max-width: 420px)" srcset="img/tirage-horsligne-288.png" width="288" height="266">
+          <img src="img/tirage-horsligne-384.png" width="384" height="355" loading="lazy" alt="Écran de Gab-POS Tech sans connexion, imprimé en noir et blanc : le message dit que les ventes sont gardées sur l’appareil.">
+        </picture>
+        <button class="tirage-voir" type="button"><svg class="ico"><use href="#i-lecture"/></svg>Voir en vrai</button>
+      </figure>
+      <p class="titre-bloc imp">CE QUI SE PASSE</p>
+      <ol class="suite imp">
+        <li>La vente s’écrit d’abord sur l’appareil, jamais seulement sur le serveur.</li>
+        <li>Elle reçoit une clé unique : l’envoyer deux fois ne fait jamais deux ventes.</li>
+        <li>L’appli réessaie à intervalle régulier, même si le téléphone se croit connecté.</li>
+        <li>Au retour du réseau, la vente part seule. Le reçu provisoire devient définitif.</li>
+      </ol>
+      <hr class="tirets imp">
+      <p class="c petit imp">Cette page marche pareil : après une première visite, elle s’ouvre sans réseau.</p>
+    </div>
   </section>
 
-  <section id="parcours">
-    <h2>Parcours</h2>
-    <ul class="timeline">
-      <li><time>2025 – auj.</time><span><b>Gab-POS Tech</b>, Libreville — fondateur et développeur</span></li>
-      <li><time>mai 2025</time><span>Challenge de l'étudiant-entrepreneur (Youth Connekt Cameroon, PNUD, ONU Femmes) — présélection zonale</span></li>
-      <li><time>été 2024</time><span>Stage développeur, <b>CDTIC – Université de Ngaoundéré</b> — système de gestion des présences</span></li>
-      <li><time>2023 – 2025</time><span>Génie logiciel, <b>Institut Supérieur ISSTMADD</b>, Ngaoundéré — président du club informatique</span></li>
-      <li><time>2022</time><span>Stage développeur, <b>Butterfly Company</b> — suivi des tâches, interface e-commerce</span></li>
-    </ul>
+  <!-- ─────────── Temps réel ─────────── -->
+  <section class="rang" id="temps-reel">
+    <div class="scene">
+      <div class="scene-colle">
+        <div>
+          <h2>Le plat est prêt. La serveuse le sait en moins de 3 secondes.</h2>
+          <p>Filmé sur un vrai téléphone, écran verrouillé, avec le compte de démonstration.</p>
+        </div>
+        <figure class="tel">
+          <video muted loop playsinline preload="none" poster="img/poster-notification.jpg" data-src="video/notification.mp4" aria-label="Vidéo : la cuisine marque la commande prête, la notification arrive sur le téléphone verrouillé."></video>
+        </figure>
+      </div>
+    </div>
+    <div class="papier">
+      <p class="inverse imp"><span>EN DIRECT</span></p>
+      <figure class="tirage imp" data-video="video/notification.mp4" data-poster="img/poster-notification.jpg" data-legende="La notification, filmée sur un vrai téléphone.">
+        <picture>
+          <source media="(max-width: 420px)" srcset="img/tirage-cuisine-288.png" width="288" height="235">
+          <img src="img/tirage-cuisine-384.png" width="384" height="314" loading="lazy" alt="Écran de cuisine de Gab-POS Tech, imprimé en noir et blanc : une commande pour la table T2 et son bouton Prendre.">
+        </picture>
+        <button class="tirage-voir" type="button"><svg class="ico"><use href="#i-lecture"/></svg>Voir en vrai</button>
+      </figure>
+      <ul class="lignes imp">
+        <li><span>Serveuse vers cuisine</span><i></i><b>WebSocket</b></li>
+        <li><span>Cuisine vers téléphone</span><i></i><b>Web Push</b></li>
+        <li><span>Une salle par commerce</span><i></i><b>isolée</b></li>
+        <li><span>Montant dans la notification</span><i></i><b>jamais</b></li>
+        <li><span>Mesuré le 04/11/2026</span><i></i><b>moins de 3 s</b></li>
+      </ul>
+    </div>
   </section>
 
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>Un projet, une question, une collaboration : écrivez-moi à
-      <a href="mailto:djabirabdoulraouf72@gmail.com">djabirabdoulraouf72@gmail.com</a>
-      ou sur <a href="https://www.linkedin.com/in/djabir-abdoul-raouf" target="_blank" rel="noopener">LinkedIn</a>.
-      Je réponds en français, depuis Libreville.</p>
+  <!-- ─────────── Les pannes ─────────── -->
+  <section class="rang" id="pannes">
+    <div class="scene">
+      <div class="scene-colle">
+        <div>
+          <h2>Trois pannes qui m’ont appris le métier.</h2>
+          <p>Un ticket honnête montre aussi les annulations. Chaque panne a laissé une règle, et souvent un test.</p>
+        </div>
+      </div>
+    </div>
+    <div class="papier">
+      <p class="inverse imp"><span>ANNULATIONS</span></p>
+      <article class="panne imp">
+        <h3>Connexion en boucle sur iPhone</h3>
+        <p><b>Cause.</b> Le site et l’API vivaient sur deux domaines : Safari refusait le cookie de session.</p>
+        <p><b>Règle.</b> L’API reste sur un sous-domaine du site. Vérifié en production sur iPhone.</p>
+      </article>
+      <hr class="tirets imp">
+      <article class="panne imp">
+        <h3>Le 15/08 : la caisse refuse de vendre</h3>
+        <p><b>Cause.</b> Les références de vente étaient numérotées par commerce, mais uniques pour toute la base. Deux commerces, le même jour, la même référence : le second était rejeté.</p>
+        <p><b>Règle.</b> Toute unicité se déclare par commerce, et se teste avec deux commerces.</p>
+      </article>
+      <hr class="tirets imp">
+      <article class="panne imp">
+        <h3>« Encaisser » ne répond plus</h3>
+        <p><b>Cause.</b> Avec un VPN allumé, le téléphone se croit connecté. La requête ne rate pas : elle reste suspendue, sans erreur.</p>
+        <p><b>Règle.</b> Tout envoi a un délai maximum et une clé unique. On peut toujours le relancer sans danger.</p>
+      </article>
+    </div>
   </section>
 
-  <footer>© 2026 Djabir Abdoul Raouf · Page sans cookies ni traceurs.</footer>
-</div>
+  <!-- ─────────── Compétences ─────────── -->
+  <section class="rang" id="competences">
+    <div class="scene">
+      <div class="scene-colle">
+        <div>
+          <h2>Mon inventaire, sans gonfler le stock.</h2>
+          <p>Ce que j’utilise tous les jours, et ce que je connais moins. Comme dans une vraie caisse, le stock faible est signalé.</p>
+        </div>
+      </div>
+    </div>
+    <div class="papier">
+      <p class="inverse imp"><span>STOCK</span></p>
+      <p class="titre-bloc imp">EN RAYON, CHAQUE JOUR</p>
+      <ul class="lignes imp">
+        <li><span>React, JavaScript, Vite</span><i></i><b>en stock</b></li>
+        <li><span>Tailwind CSS, HTML, CSS</span><i></i><b>en stock</b></li>
+        <li><span>PWA, hors connexion</span><i></i><b>en stock</b></li>
+        <li><span>Node.js, Express, API REST</span><i></i><b>en stock</b></li>
+        <li><span>JWT, WebSocket, Web Push</span><i></i><b>en stock</b></li>
+        <li><span>MySQL, Prisma, migrations</span><i></i><b>en stock</b></li>
+        <li><span>Git, GitHub, tests, CI</span><i></i><b>en stock</b></li>
+        <li><span>Vercel, Render, Aiven, DNS</span><i></i><b>en stock</b></li>
+      </ul>
+      <p class="titre-bloc imp">EN RÉSERVE</p>
+      <ul class="lignes imp">
+        <li><span>Figma, Photoshop, Illustrator</span><i></i><b>servi</b></li>
+        <li><span>Montage vidéo par script</span><i></i><b>servi</b></li>
+        <li><span>PHP, PowerShell</span><i></i><b>servi</b></li>
+      </ul>
+      <p class="titre-bloc imp">STOCK FAIBLE</p>
+      <ul class="lignes imp">
+        <li><span>React Native</span><i></i><b>les bases</b></li>
+        <li><span>TypeScript</span><i></i><b>projets perso</b></li>
+      </ul>
+      <p class="titre-bloc imp">EN COMMANDE</p>
+      <ul class="lignes imp">
+        <li><span>Assistant IA dans la caisse (API Claude)</span><i></i><b>en test</b></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ─────────── Parcours ─────────── -->
+  <section class="rang" id="parcours">
+    <div class="scene">
+      <div class="scene-colle">
+        <div>
+          <h2>De Ngaoundéré à Libreville.</h2>
+          <p>Un bac en technologie de l’informatique, un cycle en génie logiciel, deux stages, puis mon propre produit.</p>
+          <p class="scene-liens">
+            <a href="cv/Djabir-Abdoul-Raouf-CV.pdf"><svg class="ico"><use href="#i-cv"/></svg>Télécharger mon CV</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="papier">
+      <p class="inverse imp"><span>HISTORIQUE</span></p>
+      <ul class="histoire imp">
+        <li><time>2025 → auj.</time><div><b>Gab-POS Tech</b>, Libreville<br>Fondateur et développeur.</div></li>
+        <li><time>mai 2025</time><div><b>Challenge de l’étudiant-entrepreneur</b><br>Présélection zonale, pôle Septentrion. Youth Connekt Cameroon, avec le PNUD et ONU Femmes.</div></li>
+        <li><time>2023 → 2025</time><div><b>Génie logiciel, ISSTMADD</b>, Ngaoundéré<br>Délégué de spécialité, président du club informatique.</div></li>
+        <li><time>été 2024</time><div><b>Stage au CDTIC</b>, Université de Ngaoundéré<br>Système de gestion des présences des étudiants.</div></li>
+        <li><time>été 2022</time><div><b>Stage chez Butterfly Company</b><br>Suivi des tâches, interface e-commerce, infographie.</div></li>
+        <li><time>avant</time><div><b>Baccalauréat TI</b>, Lycée Classique Moderne de Ngaoundéré.</div></li>
+      </ul>
+      <p class="titre-bloc imp">AUTRES PROJETS</p>
+      <ul class="lignes imp">
+        <li><span><a href="https://restauranager.vercel.app" target="_blank" rel="noopener">RestauManager</a>, gestion de restaurant</span><i></i><b>en ligne</b></li>
+        <li><span>Hâadjé Am, marketplace et livraison, Cameroun</span><i></i><b>en cours</b></li>
+        <li><span><a href="https://github.com/ALGO72/BURGER-HOUSE" target="_blank" rel="noopener">Burger House</a>, vitrine et commande</span><i></i><b>code</b></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ─────────── Le bilan ─────────── -->
+  <section class="rang" id="bilan">
+    <div class="scene">
+      <div class="scene-colle">
+        <div>
+          <h2>Le bilan, compté à la clôture.</h2>
+          <p>Chaque soir, une caisse fait son Z : le total de la journée, sans arrondir. Voici le mien, relevé dans le code et les tests.</p>
+        </div>
+      </div>
+    </div>
+    <div class="papier">
+      <p class="inverse imp"><span>Z DE CAISSE</span></p>
+      <p class="c petit imp">Relevé du 04/11/2026</p>
+      <ul class="lignes imp">
+        <li><span>Commits</span><i></i><b>1 131</b></li>
+        <li><span>Pull requests fusionnées</span><i></i><b>115</b></li>
+        <li><span>Lignes de code, hors tests</span><i></i><b>73 291</b></li>
+        <li><span>Tables en base</span><i></i><b>38</b></li>
+        <li><span>Migrations</span><i></i><b>43</b></li>
+        <li><span>Tests automatiques</span><i></i><b>1 264</b></li>
+        <li><span>Attaques testées, bloquées</span><i></i><b>37</b></li>
+        <li><span>Failles de logique corrigées</span><i></i><b>11</b></li>
+        <li><span>Sauvegarde chiffrée</span><i></i><b>chaque nuit</b></li>
+        <li><span>Restauration vérifiée</span><i></i><b>02/11/2026</b></li>
+      </ul>
+      <hr class="egal imp">
+      <ul class="lignes imp">
+        <li><span>Équipe</span><i></i><b>1 personne</b></li>
+        <li><span>Outil</span><i></i><b>une IA de code</b></li>
+      </ul>
+      <p class="petit imp">Je décide, je relis, je teste et je réponds de ce qui part en production. L’IA écrit avec moi, et je le dis.</p>
+      <hr class="egal imp">
+      <p class="recu-total imp"><span>LONGUEUR DU TICKET</span><span id="longueur">3 m</span></p>
+    </div>
+  </section>
+
+  <!-- ─────────── Contact ─────────── -->
+  <section class="rang" id="contact">
+    <div class="scene">
+      <div class="scene-colle">
+        <div>
+          <h2>Un projet, une question, une collaboration ?</h2>
+          <p>Je réponds en français, depuis Libreville.</p>
+          <p><a class="courriel" href="mailto:djabirabdoulraouf72@gmail.com"><svg class="ico"><use href="#i-mail"/></svg><span>djabirabdoulraouf72@gmail.com</span></a></p>
+          <p class="scene-liens">
+            <a href="https://www.linkedin.com/in/djabir-abdoul-raouf" target="_blank" rel="noopener">LinkedIn<svg class="ico"><use href="#i-sortie"/></svg></a>
+            <a href="https://github.com/ALGO72" target="_blank" rel="noopener">GitHub<svg class="ico"><use href="#i-sortie"/></svg></a>
+            <a href="cv/Djabir-Abdoul-Raouf-CV.pdf"><svg class="ico"><use href="#i-cv"/></svg>Mon CV</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="papier papier-fin">
+      <p class="inverse imp"><span>CONDITIONS DE VENTE</span></p>
+      <ul class="regles imp">
+        <li><b>Le mot suit la donnée.</b> Tant que les charges ne sont pas saisies, l’écran écrit « marge », pas « bénéfice ». Un logiciel qui flatte le patron finit par lui mentir.</li>
+        <li><b>Le réseau coupe, le logiciel non.</b> On encaisse d’abord, on synchronise après.</li>
+        <li><b>Livrer, pas démontrer.</b> Un produit existe quand quelqu’un s’en sert sans moi : hébergement, sauvegardes, guides, formation.</li>
+      </ul>
+      <hr class="tirets imp">
+      <ul class="lignes imp">
+        <li><span>Une idée</span><i></i><b>×1</b></li>
+        <li><span>Patience</span><i></i><b>×365</b></li>
+        <li><span>Travail</span><i></i><b>chaque jour</b></li>
+      </ul>
+      <p class="recu-total imp"><span>TOTAL</span><span>À SUIVRE</span></p>
+      <hr class="tirets imp">
+      <div class="qr imp">
+        <img src="img/qr-linkedin.svg" width="132" height="132" loading="lazy" alt="Code QR vers le profil LinkedIn de Djabir Abdoul Raouf.">
+        <p class="c petit">Scannez pour me retrouver<br>sur LinkedIn.</p>
+      </div>
+      <p class="double c imp">MERCI DE VOTRE VISITE</p>
+      <p class="c petit imp">Page écrite à la main, sans cookies ni traceurs.<br>© 2026 Djabir Abdoul Raouf</p>
+      <span class="dechirure" aria-hidden="true"></span>
+    </div>
+  </section>
+</main>
+
+<script src="js/afficheur.js" defer></script>
+<script src="js/caisse.js" defer></script>
+<script src="js/site.js" defer></script>
 </body>
 </html>
